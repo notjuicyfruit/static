@@ -87,7 +87,7 @@ class CGPACalculator(toga.App):
         self.result_label.text = f'Your CGPA is: {cgpa:.2f}'
 
 def main():
-    return CGPACalculator()
+    return CGPACalculator('CGPA Calculator', 'org.example.cgpacalculator')
 
 if __name__ == '__main__':
     main().main_loop()
