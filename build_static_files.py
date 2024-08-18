@@ -1,24 +1,6 @@
 # build_static_files.py
-from toga_web import App
-import os
-import shutil
+from app import main
 
-# Create a new Toga Web app instance
-app = App()
-
-# Path to the directory where static files will be stored
-output_dir = 'public'
-
-# Ensure the output directory exists
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
-
-# Build the static files
-app.build_static(output_dir)
-
-# Optionally, remove previous builds (if needed)
-if os.path.exists(output_dir):
-    shutil.rmtree(output_dir)
-
-# Now build the static files
-app.build_static(output_dir)
+if __name__ == '__main__':
+    app = main()
+    app.build(app_module_name='app', output_dir='public')
