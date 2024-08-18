@@ -1,0 +1,35 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # or the branch you want to deploy from
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'  # Specify your Python version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install toga-web  # Install necessary dependencies
+
+      - name: Build static files
+        run: |
+          # Run the script to build your static files
+          python build_static_files.py
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public  # Directory containing your static files
